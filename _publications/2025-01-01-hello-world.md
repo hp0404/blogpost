@@ -47,4 +47,17 @@ Setting up GitHub Pages (one time):
 - Push this repo to GitHub with the default branch named `main`.
 - In GitHub: Settings → Pages → Build and deployment → select "GitHub Actions". The included workflow `.github/workflows/pages.yml` will handle builds on every push.
 
+Deployment gotcha (first push):
+
+If your first push shows an error like:
+
+```
+Error: Get Pages site failed. Please verify that the repository has Pages enabled and configured to build using GitHub Actions ... HttpError: Not Found
+```
+
+Do this:
+- Go to Settings → Pages and enable Pages. Choose "GitHub Actions" for Build and deployment.
+- Then make any small commit (e.g., edit `index.md`) and push again, or re-run the failed workflow from the Actions tab.
+- After this one-time enablement, future pushes will deploy automatically. The workflow will print the site URL when it completes.
+
 
