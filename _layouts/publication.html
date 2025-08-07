@@ -1,0 +1,47 @@
+---
+layout: default
+---
+<article class="publication">
+  <header class="pub-header">
+    <h1>{{ page.title }}</h1>
+    <div class="pub-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%b %-d, %Y' }}</time>
+      {% if page.tags and page.tags.size > 0 %}
+        <span class="divider">·</span>
+        <span class="tags-inline">
+          {% for t in page.tags %}
+            <a class="tag-chip small" href="{{ '/' | relative_url }}#tag-{{ t | downcase }}">#{{ t }}</a>
+          {% endfor %}
+        </span>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="pub-content">
+    {{ content }}
+  </div>
+
+  {% assign pubs = site.publications | sort: 'date' | reverse %}
+  {% assign current_index = nil %}
+  {% for it in pubs %}
+    {% if it.url == page.url %}
+      {% assign current_index = forloop.index0 %}
+    {% endif %}
+  {% endfor %}
+  {% if current_index != nil %}
+    {% assign prev_index = current_index | minus: 1 %}
+    {% assign next_index = current_index | plus: 1 %}
+    <nav class="pub-nav">
+      {% if prev_index >= 0 %}
+        {% assign prev_item = pubs[prev_index] %}
+        <a class="prev" href="{{ prev_item.url | relative_url }}">← {{ prev_item.title }}</a>
+      {% endif %}
+      {% if next_index < pubs.size %}
+        {% assign next_item = pubs[next_index] %}
+        <a class="next" href="{{ next_item.url | relative_url }}">{{ next_item.title }} →</a>
+      {% endif %}
+    </nav>
+  {% endif %}
+</article>
+
+

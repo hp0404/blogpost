@@ -1,0 +1,56 @@
+---
+layout: default
+---
+<section class="home">
+  <header class="home-header">
+    <h1>{{ page.title | default: 'Publications' }}</h1>
+    <p class="muted">Latest publications. Use search or tags to filter.</p>
+    <div class="filters">
+      <input id="search-input" type="search" placeholder="Search titles and tags…" aria-label="Search" />
+
+      {% assign all_tags = '' | split: '' %}
+      {% for pub in site.publications %}
+        {% if pub.tags %}
+          {% for t in pub.tags %}
+            {% assign all_tags = all_tags | push: t %}
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+      {% assign unique_tags = all_tags | uniq | sort %}
+
+      <div id="tag-list" class="tag-list" role="list">
+        {% for tag in unique_tags %}
+          <button class="tag-chip" data-tag="{{ tag }}" role="listitem">#{{ tag }}</button>
+        {% endfor %}
+      </div>
+    </div>
+  </header>
+
+  <ul id="pub-list" class="pub-list">
+    {% assign sorted = site.publications | sort: 'date' | reverse %}
+    {% for pub in sorted %}
+      <li class="pub-item" data-title="{{ pub.title | downcase }}" data-tags="{{ pub.tags | join: ',' | downcase }}">
+        <a class="pub-link" href="{{ pub.url | relative_url }}">
+          <h2 class="pub-title">{{ pub.title }}</h2>
+          <div class="pub-meta">
+            <time datetime="{{ pub.date | date_to_xmlschema }}">{{ pub.date | date: '%b %-d, %Y' }}</time>
+            {% if pub.tags and pub.tags.size > 0 %}
+              <span class="divider">·</span>
+              <span class="tags-inline">
+                {% for t in pub.tags %}
+                  <span class="tag-chip small" data-tag="{{ t }}">#{{ t }}</span>
+                {% endfor %}
+              </span>
+            {% endif %}
+          </div>
+          {% if pub.summary %}
+            <p class="pub-summary">{{ pub.summary }}</p>
+          {% endif %}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+  <p id="no-results" class="muted" hidden>No matching publications.</p>
+</section>
+
+

@@ -1,0 +1,42 @@
+title: "My Publications"
+description: "Personal site with publications"
+# Update these for your GitHub Pages URL
+url: "" # e.g., "https://your-username.github.io"
+baseurl: "" # e.g., "/repo-name" for project pages
+
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter_opts:
+    line_numbers: false
+
+permalink: /:categories/:title/
+
+collections:
+  publications:
+    output: true
+    permalink: /publications/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: "publications"
+    values:
+      layout: "publication"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+exclude:
+  - vendor
+  - node_modules
+  - README.md
+  - pyproject.toml
+

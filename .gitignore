@@ -1,0 +1,17 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Jekyll build artifacts
+_site/
+.jekyll-cache/
+.sass-cache/
+.bundle/
+vendor/
