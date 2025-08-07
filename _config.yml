@@ -1,8 +1,8 @@
 title: "My Publications"
 description: "Personal site with publications"
 # Update these for your GitHub Pages URL
-url: "" # e.g., "https://your-username.github.io"
-baseurl: "" # e.g., "/repo-name" for project pages
+url: "https://hp0404.github.io" # The base hostname & protocol for your site
+baseurl: "/blogpost" # The subpath of your site (for project pages)
 
 markdown: kramdown
 highlighter: rouge

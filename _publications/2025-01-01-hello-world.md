@@ -9,7 +9,7 @@ This is an example publication. Add more files like this one into the `_publicat
 
 Images work as usual in Markdown:
 
-![A placeholder image](/assets/images/placeholder.svg)
+![A placeholder image]({{ '/assets/images/placeholder.svg' | relative_url }})
 
 Code blocks are highlighted using Rouge:
 
@@ -38,7 +38,11 @@ summary: Optional short blurb shown on the list page
 ---
 ```
 
-3) Write the rest of your post beneath the front matter using normal Markdown. Images can live under `assets/images/` and be referenced as `![alt](/assets/images/your-image.png)`.
+3) Write the rest of your post beneath the front matter using normal Markdown. Images can live under `assets/images/` and be referenced as:
+
+```
+![alt]({{ '/assets/images/your-image.png' | relative_url }})
+```
 
 4) Commit and push to `main`. The GitHub Actions workflow will build and deploy automatically.
 
