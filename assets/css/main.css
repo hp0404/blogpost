@@ -57,7 +57,6 @@ h2 { font-size: 1.35rem; margin: 1.1rem 0 .5rem; }
 
 .home .pub-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
 .pub-item { border: 1px solid var(--border); border-radius: 12px; background: var(--card); }
-.
 .pub-link { display: block; padding: 14px 14px; color: inherit; text-decoration: none; transition: background-color .15s ease; }
 .pub-link:hover { background: #f6f6f6; }
 .pub-title { margin: 0; }
@@ -78,9 +77,25 @@ h2 { font-size: 1.35rem; margin: 1.1rem 0 .5rem; }
 
 a { color: var(--link); text-underline-offset: 2px; }
 a:hover { text-decoration: underline; }
+a:visited { color: var(--link); }
 
 /* Rouge syntax highlight minimal tweaks */
 .highlight { background: #f6f6f6; border: 1px solid var(--border); border-radius: 10px; padding: 12px; overflow: auto; }
 .highlight pre { margin: 0; background: transparent; border: 0; padding: 0; }
+
+/* Force monochrome code tokens regardless of Rouge theme */
+.highlight, .highlight * { color: var(--fg) !important; }
+
+/* Enforce black-and-white UI elements */
+:root { accent-color: #000000; }
+img, svg { filter: grayscale(100%); }
+
+/* Normalize browser autofill tinting to neutral */
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-text-fill-color: var(--fg);
+  -webkit-box-shadow: 0 0 0px 1000px var(--card) inset;
+}
 
 
